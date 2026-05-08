@@ -1,0 +1,59 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public int kthSmallest(TreeNode root, int k) {
+        ArrayList<Integer> list=new ArrayList<>();
+        TreeNode node=inorder(root,list);
+        return list.get(k-1);
+    }
+    public TreeNode inorder(TreeNode root,ArrayList<Integer> list){
+        if(root==null){return null;}
+        inorder(root.left,list);
+        list.add(root.val);
+        inorder(root.right,list);
+        return root;
+    }
+}
+
+
+
+//1st time when i did it- i dont even know why i did this approach , it worked tho:)
+
+
+
+
+// class Solution {
+//     public int kthSmallest(TreeNode root, int k) {
+//         ArrayList<Integer> list=new ArrayList<>();
+//         Queue<TreeNode> q=new LinkedList<>();
+//         q.offer(root);
+//         list.add(root.val);
+//         while(!q.isEmpty()){
+//             int size=q.size();
+//             TreeNode node=null;
+//             for(int i=0;i<size;i++){
+//                 node=q.poll();
+            
+//                 if(node.left!=null){q.offer(node.left);list.add(node.left.val);}
+//                 if(node.right!=null){q.offer(node.right);list.add(node.right.val);}
+//             }
+//         }
+//        Collections.sort(list);
+
+// return list.get(k-1);
+//     }
+
+// }
